@@ -73,4 +73,13 @@ class Itinerary
 
         return $completed;
     }
+
+    public function nextStopToComplete()
+    {
+        foreach ($this->allStops() as $nextStop){
+            if (! $nextStop->completed()){
+                return $nextStop;
+            }
+        }
+    }
 }

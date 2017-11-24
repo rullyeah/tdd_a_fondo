@@ -30,4 +30,9 @@ class Stop
     {
         return $this->status == self::COMPLETED;
     }
+
+    public function equals(Stop $other)
+    {
+        return $this->id() == $other->id();
+    }
 }

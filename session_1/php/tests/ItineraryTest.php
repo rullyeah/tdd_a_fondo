@@ -63,4 +63,20 @@ class ItineraryTest extends TestCase
     $this->expectException(StopNotExistsException::class);
     $this->itinerary->arriveTo($fakeStop);
   }
+
+  public function testMustBePossibleConsultNextStopToComplete()
+  {
+    $firstIntermediateStop = new Stop('Albéric');
+    $this->itinerary->addIntermediateStop($firstIntermediateStop);
+    $this->itinerary->arriveTo($this->handin);
+
+    $nextStop = $this->itinerary->nextStopToComplete();
+    $this->itinerary->arriveTo($firstIntermediateStop);
+    $nextStopThen = $this->itinerary->nextStopToComplete();
+
+    $this->assertEquals($firstIntermediateStop, $nextStop);
+    $this->assertEquals($this->handoff, $nextStopThen);
+
+  }
+
 }

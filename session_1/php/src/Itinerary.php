@@ -44,7 +44,7 @@ class Itinerary
         );
     }
 
-    public function complete(Stop $stopToComplete)
+    public function arriveTo(Stop $stopToComplete)
     {
         $stop = $this->find($stopToComplete);
 

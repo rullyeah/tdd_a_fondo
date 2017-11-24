@@ -47,10 +47,10 @@ class ItineraryTest extends TestCase
     $this->itinerary->addIntermediateStop($firstIntermediateStop);
     $this->itinerary->addIntermediateStop($secondIntermediateStop);
 
-    $this->itinerary->complete($this->handin);
-    $this->itinerary->complete($firstIntermediateStop);
-    $this->itinerary->complete($secondIntermediateStop);
-    $this->itinerary->complete($this->handoff);
+    $this->itinerary->arriveTo($this->handin);
+    $this->itinerary->arriveTo($firstIntermediateStop);
+    $this->itinerary->arriveTo($secondIntermediateStop);
+    $this->itinerary->arriveTo($this->handoff);
     $completed = $this->itinerary->completed();
 
     $this->assertTrue($completed);
@@ -61,6 +61,6 @@ class ItineraryTest extends TestCase
     $fakeStop = new Stop('Albéric');
 
     $this->expectException(StopNotExistsException::class);
-    $this->itinerary->complete($fakeStop);
+    $this->itinerary->arriveTo($fakeStop);
   }
 }

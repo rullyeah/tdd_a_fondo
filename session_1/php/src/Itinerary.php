@@ -65,13 +65,7 @@ class Itinerary
 
     public function completed()
     {
-        $completed = true;
-
-        foreach ($this->allStops() as $stop){
-            $completed = $stop->completed() && $completed; 
-        }   
-
-        return $completed;
+        return $this->nextStopToComplete() == null;
     }
 
     public function nextStopToComplete()
@@ -81,5 +75,7 @@ class Itinerary
                 return $nextStop;
             }
         }
+
+        return null;
     }
 }

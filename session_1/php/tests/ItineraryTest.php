@@ -21,4 +21,16 @@ class ItineraryTest extends TestCase
 
     $this->assertEquals($handoff, $itinerary->handoff(), 'Itinerary has Hand-off');
   }
+
+  public function testItineraryCanHaveAnIntermediateStop()
+  {
+    $handin = new Stop('Valencia');
+    $handoff = new Stop('Alcoi');
+    $itinerary = new Itinerary($handin, $handoff);
+
+    $intermediateStop = new Stop('Xátiva');
+    $itinerary->addIntermediateStop($intermediateStop);
+
+    $this->assertContains($intermediateStop, $itinerary->intermediateStops());
+  }
 }

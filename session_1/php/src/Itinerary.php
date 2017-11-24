@@ -55,7 +55,7 @@ class Itinerary
     public function checkHandInIsCompletedOrThis($stopToComplete)
     {
         if ($stopToComplete != $this->handin && !$this->handin->completed()){
-            throw new \Exception;
+            throw new InvalidStopException('First Stop Should be Hand-in');
         }
     }
 

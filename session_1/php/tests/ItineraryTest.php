@@ -4,6 +4,7 @@ use PHPUnit\Framework\TestCase;
 use Src\Itinerary;
 use Src\Stop;
 use Src\StopNotExistsException;
+use Src\InvalidStopException;
 
 class ItineraryTest extends TestCase
 {
@@ -88,7 +89,7 @@ class ItineraryTest extends TestCase
 
   public function testTryToArriveToAnotherStopBeforeHandinThrowException()
   {
-    $this->expectException(\Exception::class);
+    $this->expectException(InvalidStopException::class);
     $this->itinerary->arriveTo($this->handoff);
   }
 

@@ -16,6 +16,11 @@ class Stop
         $this->status = self::PENDING;
     }
 
+    public function id()
+    {
+        return $this->location;
+    }
+
     public function complete()
     {
         $this->status = self::COMPLETED;
@@ -24,10 +29,5 @@ class Stop
     public function completed()
     {
         return $this->status == self::COMPLETED;
-    }
-
-    public function id()
-    {
-        return $this->location;
     }
 }

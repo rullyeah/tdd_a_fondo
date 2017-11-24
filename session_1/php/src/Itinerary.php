@@ -25,9 +25,9 @@ class Itinerary
         return $this->handoff;
     }
 
-    public function addIntermediateStop($intermediateStop)
+    public function addIntermediateStop(Stop $stop)
     {
-        $this->intermediateStops[$intermediateStop->id()] = $intermediateStop;
+        $this->intermediateStops[$stop->id()] = $stop;
     }
 
     public function intermediateStops()
@@ -48,14 +48,13 @@ class Itinerary
     {
         $stop = $this->find($stopToComplete);
 
-        if (isset($stop)){
-            $stop->complete();
-        }
+        $stop->complete();
     }
 
     public function find(Stop $stop)
     {
         $allStops = $this->allStops();
+
         if ( ! isset($allStops[$stop->id()])) {
             throw new StopNotExistsException('Stop not found');
         }

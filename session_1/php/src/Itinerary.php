@@ -47,6 +47,7 @@ class Itinerary
     public function arriveTo(Stop $stopToComplete)
     {
         $this->checkHandInIsCompletedOrThis($stopToComplete);
+        $this->checkNoHandoffBeforeCompleteAll($stopToComplete);
         $stop = $this->find($stopToComplete);
 
         $stop->complete();
@@ -58,6 +59,14 @@ class Itinerary
             throw new InvalidStopException('First Stop Should be Hand-in');
         }
     }
+
+    public function checkNoHandoffBeforeCompleteAll($stopToComplete)
+    {
+        if ($this->handoff == $stopToComplete && $this->nextStopToComplete() != $stopToComplete){
+            throw new InvalidStopException('Hand-off Should be the last stop');
+        }
+    }
+
 
     public function find(Stop $stop)
     {

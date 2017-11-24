@@ -36,8 +36,15 @@ class ItineraryTest extends TestCase
     $this->itinerary->addIntermediateStop($firstIntermediateStop);
     $this->itinerary->addIntermediateStop($secondIntermediateStop);
 
-    $this->assertContains($firstIntermediateStop, $this->itinerary->intermediateStops());
-    $this->assertContains($secondIntermediateStop, $this->itinerary->intermediateStops());
+    $this->assertContains(
+        $firstIntermediateStop, 
+        $this->itinerary->intermediateStops(), 
+        'Itinerary Have First Intermediate Stop');
+
+    $this->assertContains(
+        $secondIntermediateStop, 
+        $this->itinerary->intermediateStops(),
+        'Itinerary Have Second Intermediate Stop');
   }
 
   public function testItineraryIsCompletedWhenAllTheStopsAreCompleted()
@@ -53,7 +60,7 @@ class ItineraryTest extends TestCase
     $this->itinerary->arriveTo($this->handoff);
     $completed = $this->itinerary->completed();
 
-    $this->assertTrue($completed);
+    $this->assertTrue($completed, 'Itinerary Completed when all Stops are completed');
   }
 
   public function testTryToCompleteARouteThatIsNotInTheItineraryThrowsException()
@@ -61,7 +68,7 @@ class ItineraryTest extends TestCase
     $fakeStop = new Stop('Albéric');
 
     $this->expectException(StopNotExistsException::class);
-    $this->itinerary->arriveTo($fakeStop);
+    $this->itinerary->arriveTo($fakeStop, 'Try to complete fake Stop launch exception');
   }
 
   public function testMustBePossibleConsultNextStopToComplete()
@@ -74,8 +81,8 @@ class ItineraryTest extends TestCase
     $this->itinerary->arriveTo($firstIntermediateStop);
     $nextStopThen = $this->itinerary->nextStopToComplete();
 
-    $this->assertEquals($firstIntermediateStop, $nextStop);
-    $this->assertEquals($this->handoff, $nextStopThen);
+    $this->assertEquals($firstIntermediateStop, $nextStop, 'next stop returned');
+    $this->assertEquals($this->handoff, $nextStopThen, 'and next stop returned');
 
   }
 

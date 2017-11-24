@@ -22,4 +22,9 @@ class Stop
     {
         return $this->completed;
     }
+
+    public function equals(self $otherStop )
+    {
+        return $this->location == $otherStop->location;
+    }
 }

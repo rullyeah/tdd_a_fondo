@@ -47,7 +47,7 @@ class Itinerary
     public function stopCompleted(Stop $stopCompleted)
     {
         foreach ($this->allStops() as $stop) {
-            if ($stop == $stopCompleted) {
+            if ($stop->equals($stopCompleted)) {
                 $stop->complete();
             }
         }

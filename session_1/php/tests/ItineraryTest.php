@@ -12,4 +12,12 @@ class ItineraryTest extends TestCase
 
     $this->assertEquals($handin, $itinerary->handin(), 'Itinerary has Hand-in');
   }
+
+  public function testItineraryHasHandOff() {
+    $handin = new Stop('Valencia');
+    $handoff = new Stop('Alcoi');
+    $itinerary = new Itinerary($handin, $handoff);
+
+    $this->assertEquals($handoff, $itinerary->handoff(), 'Itinerary has Hand-off');
+  }
 }

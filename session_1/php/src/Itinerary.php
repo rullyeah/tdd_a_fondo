@@ -46,12 +46,17 @@ class Itinerary
 
     public function arriveTo(Stop $stopToComplete)
     {
-        if ($stopToComplete != $this->handin && !$this->handin->completed()){
-            throw new \Exception;
-        }
+        $this->checkHandInIsCompletedOrThis($stopToComplete);
         $stop = $this->find($stopToComplete);
 
         $stop->complete();
+    }
+
+    public function checkHandInIsCompletedOrThis($stopToComplete)
+    {
+        if ($stopToComplete != $this->handin && !$this->handin->completed()){
+            throw new \Exception;
+        }
     }
 
     public function find(Stop $stop)

@@ -71,6 +71,12 @@ class ItineraryTest extends TestCase
     $this->itinerary->arriveTo($fakeStop, 'Try to complete fake Stop launch exception');
   }
 
+  public function testTryToArriveToAnotherStopBeforeHandinThrowException()
+  {
+    $this->expectException(\Exception::class);
+    $this->itinerary->arriveTo($this->handoff);
+  }
+
   public function testMustBePossibleConsultNextStopToComplete()
   {
     $firstIntermediateStop = new Stop('Albéric');

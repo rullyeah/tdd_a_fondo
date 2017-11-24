@@ -38,4 +38,20 @@ class ItineraryTest extends TestCase
     $this->assertContains($firstIntermediateStop, $this->itinerary->intermediateStops());
     $this->assertContains($secondIntermediateStop, $this->itinerary->intermediateStops());
   }
+
+  public function testItineraryIsCompletedWhenAllTheStopsAreCompleted()
+  {
+    $firstIntermediateStop = new Stop('Albéric');
+    $secondIntermediateStop = new Stop('Xátiva');
+    $this->itinerary->addIntermediateStop($firstIntermediateStop);
+    $this->itinerary->addIntermediateStop($secondIntermediateStop);
+
+    $this->itinerary->stopCompleted($this->handin);
+    $this->itinerary->stopCompleted($firstIntermediateStop);
+    $this->itinerary->stopCompleted($secondIntermediateStop);
+    $this->itinerary->stopCompleted($this->handoff);
+    $isCompleted = $this->itinerary->isCompleted();
+
+    $this->assertTrue($isCompleted);
+  }
 }

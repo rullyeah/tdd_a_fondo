@@ -13,22 +13,17 @@ class Stop
     public function __construct ($location)
     {
         $this->location = $location;
-        $this->completed = self::PENDING;
+        $this->status = self::PENDING;
     }
 
     public function complete()
     {
-        $this->completed = self::COMPLETED;
+        $this->status = self::COMPLETED;
     } 
 
     public function completed()
     {
-        return $this->completed == self::COMPLETED;
-    }
-
-    public function equals(self $otherStop )
-    {
-        return $this->location == $otherStop->location;
+        return $this->status == self::COMPLETED;
     }
 
     public function id()

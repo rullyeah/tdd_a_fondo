@@ -92,4 +92,14 @@ class ItineraryTest extends TestCase
     $this->itinerary->arriveTo($this->handoff);
   }
 
+  public function testTryToArriveToHandoffBeforeCompleteOtherStopsThrowException()
+  {
+    $this->expectException(InvalidStopException::class);
+    $this->itinerary->arriveTo($this->handin);
+    $firstIntermediateStop = new Stop('Albéric');
+    $this->itinerary->addIntermediateStop($firstIntermediateStop);
+
+    $this->itinerary->arriveTo($this->handoff);
+  }
+
 }

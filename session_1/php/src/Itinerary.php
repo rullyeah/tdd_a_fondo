@@ -34,4 +34,32 @@ class Itinerary
     { 
         return $this->intermediateStops;
     }
+
+    private function allStops()
+    {
+        return array_merge(
+            array( $this->handin ), 
+            $this->intermediateStops,
+            array( $this->handoff )
+        );
+    }
+
+    public function stopCompleted(Stop $stopCompleted)
+    {
+        foreach ($this->allStops() as $stop) {
+            if ($stop == $stopCompleted) {
+                $stop->complete();
+            }
+        }
+    }
+
+    public function isCompleted()
+    {
+        $isCompleted = true;
+        foreach ($this->allStops() as $stop){
+            $isCompleted = $stop->completed() || $isCompleted; 
+        }   
+
+        return $isCompleted;
+    }
 }

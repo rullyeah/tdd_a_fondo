@@ -3,6 +3,7 @@
 use PHPUnit\Framework\TestCase;
 use Src\Itinerary;
 use Src\Stop;
+use Src\StopNotExistsException;
 
 class ItineraryTest extends TestCase
 {
@@ -59,7 +60,7 @@ class ItineraryTest extends TestCase
   {
     $fakeStop = new Stop('Albéric');
 
-    $this->expectException(Exception::class);
+    $this->expectException(StopNotExistsException::class);
     $this->itinerary->complete($fakeStop);
   }
 }

@@ -27,4 +27,9 @@ class Stop
     {
         return $this->location == $otherStop->location;
     }
+
+    public function id()
+    {
+        return $this->location;
+    }
 }

@@ -54,4 +54,12 @@ class ItineraryTest extends TestCase
 
     $this->assertTrue($completed);
   }
+
+  public function testTryToCompleteARouteThatIsNotInTheItineraryThrowsException()
+  {
+    $fakeStop = new Stop('Albéric');
+
+    $this->expectException(Exception::class);
+    $this->itinerary->complete($fakeStop);
+  }
 }

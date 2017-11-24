@@ -34,4 +34,16 @@ class ItineraryTest extends TestCase
 
     $this->assertContains($intermediateStop, $this->itinerary->intermediateStops());
   }
+
+  public function testItineraryCanHaveSameIntermediateStops()
+  {
+    $firstIntermediateStop = new Stop('Albéric');
+    $secondIntermediateStop = new Stop('Xátiva');
+
+    $this->itinerary->addIntermediateStop($firstIntermediateStop);
+    $this->itinerary->addIntermediateStop($secondIntermediateStop);
+
+    $this->assertContains($firstIntermediateStop, $this->itinerary->intermediateStops());
+    $this->assertContains($secondIntermediateStop, $this->itinerary->intermediateStops());
+  }
 }

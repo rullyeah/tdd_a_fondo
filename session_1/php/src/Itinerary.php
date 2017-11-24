@@ -7,7 +7,7 @@ class Itinerary
     private $handin;
     private $handoff;
 
-    public function __construct ($handin, $handoff = null)
+    public function __construct ($handin, $handoff)
     {
         $this->handin = $handin;
         $this->handoff = $handoff;

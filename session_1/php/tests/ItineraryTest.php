@@ -8,7 +8,8 @@ class ItineraryTest extends TestCase
 {
   public function testItineraryHasHandIn() {
     $handin = new Stop('Valencia');
-    $itinerary = new Itinerary($handin);
+    $handoff = new Stop('Alcoi');
+    $itinerary = new Itinerary($handin, $handoff);
 
     $this->assertEquals($handin, $itinerary->handin(), 'Itinerary has Hand-in');
   }

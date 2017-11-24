@@ -44,22 +44,22 @@ class Itinerary
         );
     }
 
-    public function stopCompleted(Stop $stopCompleted)
+    public function complete(Stop $stopToComplete)
     {
         foreach ($this->allStops() as $stop) {
-            if ($stop->equals($stopCompleted)) {
+            if ($stop->equals($stopToComplete)) {
                 $stop->complete();
             }
         }
     }
 
-    public function isCompleted()
+    public function completed()
     {
-        $isCompleted = true;
+        $completed = true;
         foreach ($this->allStops() as $stop){
-            $isCompleted = $stop->completed() || $isCompleted; 
+            $completed = $stop->completed() || $completed; 
         }   
 
-        return $isCompleted;
+        return $completed;
     }
 }

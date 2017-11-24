@@ -46,12 +46,12 @@ class ItineraryTest extends TestCase
     $this->itinerary->addIntermediateStop($firstIntermediateStop);
     $this->itinerary->addIntermediateStop($secondIntermediateStop);
 
-    $this->itinerary->stopCompleted($this->handin);
-    $this->itinerary->stopCompleted($firstIntermediateStop);
-    $this->itinerary->stopCompleted($secondIntermediateStop);
-    $this->itinerary->stopCompleted($this->handoff);
-    $isCompleted = $this->itinerary->isCompleted();
+    $this->itinerary->complete($this->handin);
+    $this->itinerary->complete($firstIntermediateStop);
+    $this->itinerary->complete($secondIntermediateStop);
+    $this->itinerary->complete($this->handoff);
+    $completed = $this->itinerary->completed();
 
-    $this->assertTrue($isCompleted);
+    $this->assertTrue($completed);
   }
 }

@@ -6,31 +6,32 @@ use Src\Stop;
 
 class ItineraryTest extends TestCase
 {
-  public function testItineraryHasHandIn() {
-    $handin = new Stop('Valencia');
-    $handoff = new Stop('Alcoi');
-    $itinerary = new Itinerary($handin, $handoff);
+  private $handin;
+  private $handoff;
+  private $itinerary;
 
-    $this->assertEquals($handin, $itinerary->handin(), 'Itinerary has Hand-in');
+  public function setUp()
+  {
+    $this->handin = new Stop('Valencia');
+    $this->handoff = new Stop('Alcoi');
+    $this->itinerary = new Itinerary($this->handin, $this->handoff);
   }
 
-  public function testItineraryHasHandOff() {
-    $handin = new Stop('Valencia');
-    $handoff = new Stop('Alcoi');
-    $itinerary = new Itinerary($handin, $handoff);
+  public function testItineraryHasHandIn() 
+  {
+    $this->assertEquals($this->handin, $this->itinerary->handin(), 'Itinerary has Hand-in');
+  }
 
-    $this->assertEquals($handoff, $itinerary->handoff(), 'Itinerary has Hand-off');
+  public function testItineraryHasHandOff() 
+  {
+    $this->assertEquals($this->handoff, $this->itinerary->handoff(), 'Itinerary has Hand-off');
   }
 
   public function testItineraryCanHaveAnIntermediateStop()
   {
-    $handin = new Stop('Valencia');
-    $handoff = new Stop('Alcoi');
-    $itinerary = new Itinerary($handin, $handoff);
-
     $intermediateStop = new Stop('Xátiva');
-    $itinerary->addIntermediateStop($intermediateStop);
+    $this->itinerary->addIntermediateStop($intermediateStop);
 
-    $this->assertContains($intermediateStop, $itinerary->intermediateStops());
+    $this->assertContains($intermediateStop, $this->itinerary->intermediateStops());
   }
 }

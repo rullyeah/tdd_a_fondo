@@ -66,15 +66,10 @@ class ItineraryTest extends TestCase
   public function testTryToCompleteARouteThatIsNotInTheItineraryThrowsException()
   {
     $fakeStop = new Stop('Albéric');
-
+    $this->itinerary->arriveTo($this->handin);
+ 
     $this->expectException(StopNotExistsException::class);
     $this->itinerary->arriveTo($fakeStop, 'Try to complete fake Stop launch exception');
-  }
-
-  public function testTryToArriveToAnotherStopBeforeHandinThrowException()
-  {
-    $this->expectException(\Exception::class);
-    $this->itinerary->arriveTo($this->handoff);
   }
 
   public function testMustBePossibleConsultNextStopToComplete()
@@ -89,7 +84,12 @@ class ItineraryTest extends TestCase
 
     $this->assertEquals($firstIntermediateStop, $nextStop, 'next stop returned');
     $this->assertEquals($this->handoff, $nextStopThen, 'and next stop returned');
+  }
 
+  public function testTryToArriveToAnotherStopBeforeHandinThrowException()
+  {
+    $this->expectException(\Exception::class);
+    $this->itinerary->arriveTo($this->handoff);
   }
 
 }

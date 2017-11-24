@@ -3,7 +3,6 @@
 use PHPUnit\Framework\TestCase;
 use Src\Itinerary;
 use Src\Stop;
-use Src\StopNotExistsException;
 use Src\InvalidStopException;
 
 class ItineraryTest extends TestCase
@@ -69,7 +68,7 @@ class ItineraryTest extends TestCase
     $fakeStop = new Stop('Albéric');
     $this->itinerary->arriveTo($this->handin);
  
-    $this->expectException(StopNotExistsException::class);
+    $this->expectException(InvalidStopException::class);
     $this->itinerary->arriveTo($fakeStop, 'Try to complete fake Stop launch exception');
   }
 

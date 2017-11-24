@@ -64,7 +64,7 @@ class Itinerary
         $allStops = $this->allStops();
 
         if ( ! isset($allStops[$stop->id()])) {
-            throw new StopNotExistsException('Stop not found');
+            throw new InvalidStopException('Stop not found');
         }
 
         return $allStops[$stop->id()];  

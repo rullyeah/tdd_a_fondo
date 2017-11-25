@@ -8,7 +8,7 @@ class Dice
 
     private $rollGenerator;
 
-    public function __construct($rollGenerator)
+    public function __construct(RollGeneratorInterface $rollGenerator)
     {
         $this->rollGenerator = $rollGenerator;
     }

@@ -2,7 +2,7 @@
 
 namespace Src\Dice;
 
-class RollGeneratorStub
+class RollGeneratorStub implements RollGeneratorInterface
 {
     private $value;
 

@@ -10,13 +10,19 @@ class DiceTest extends TestCase
     {
         $rollGenerator = new RollGeneratorStub(Dice::MIN_ROLL);
         $dice = new Dice($rollGenerator);
-        $this->assertGreaterThanOrEqual(Dice::MIN_ROLL, $dice->roll());
+
+        $theRoll = $dice->roll();
+
+        $this->assertGreaterThanOrEqual(Dice::MIN_ROLL, $theRoll);
     }
 
     public function testDiceShouldReturnANumberLessThanOrEqualTheMaximum()
     {
         $rollGenerator = new RollGeneratorStub(Dice::MAX_ROLL);
         $dice = new Dice($rollGenerator);
-        $this->assertLessThanOrEqual(Dice::MAX_ROLL, $dice->roll());
+
+        $theRoll = $dice->roll();
+
+        $this->assertLessThanOrEqual(Dice::MAX_ROLL, $theRoll);
     }
 }

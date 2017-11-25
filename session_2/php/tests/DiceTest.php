@@ -2,18 +2,21 @@
 
 use PHPUnit\Framework\TestCase;
 use Src\Dice\Dice;
+use Src\Dice\RollGeneratorStub;
 
 class DiceTest extends TestCase
 {
     public function testDiceShouldReturnANumberGreaterThanOrEqualTheMinimum()
     {
-        $dice = new Dice;
+        $rollGenerator = new RollGeneratorStub(Dice::MIN_ROLL);
+        $dice = new Dice($rollGenerator);
         $this->assertGreaterThanOrEqual(Dice::MIN_ROLL, $dice->roll());
     }
 
     public function testDiceShouldReturnANumberLessThanOrEqualTheMaximum()
     {
-        $dice = new Dice;
-        $this->assertLessThanOrEqual(6, $dice->roll());
+        $rollGenerator = new RollGeneratorStub(Dice::MAX_ROLL);
+        $dice = new Dice($rollGenerator);
+        $this->assertLessThanOrEqual(Dice::MAX_ROLL, $dice->roll());
     }
 }

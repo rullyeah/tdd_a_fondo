@@ -4,8 +4,17 @@ namespace Src\Dice;
 class Dice
 {
     const MIN_ROLL = 1;
+    const MAX_ROLL = 6;
+
+    private $rollGenerator;
+
+    public function __construct($rollGenerator)
+    {
+        $this->rollGenerator = $rollGenerator;
+    }
+
     public function roll()
     {
-        return self::MIN_ROLL;
+        return $this->rollGenerator->execute();
     }
 }

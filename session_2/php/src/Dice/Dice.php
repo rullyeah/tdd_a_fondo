@@ -3,8 +3,9 @@ namespace Src\Dice;
 
 class Dice
 {
+    const MIN_ROLL = 1;
     public function roll()
     {
-        return 1;
+        return self::MIN_ROLL;
     }
 }

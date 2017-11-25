@@ -8,6 +8,6 @@ class DiceTest extends TestCase
     public function testDiceShouldReturnANumberGreaterThanOrEqualTheMinimum()
     {
         $dice = new Dice;
-        $this->assertGreaterThanOrEqual(1, $dice->roll());
+        $this->assertGreaterThanOrEqual(Dice::MIN_ROLL, $dice->roll());
     }
 }

@@ -1,0 +1,23 @@
+version: '2'
+services:
+  sut:
+    build: './sut'
+    ports:
+      - 8080:80
+    volumes:
+      - './sut/dist:/usr/share/nginx/html'
+
+  selenium:
+    image: selenium/standalone-chrome
+    environment:
+      - JAVA_OPTS=-Dselenium.LOGGER.level=WARNING
+    ports:
+      - 4444:4444
+
+  e2e:
+    build: './e2e/'
+    volumes:
+      - './e2e:/e2e'
+    depends_on:
+      - sut
+      - selenium
